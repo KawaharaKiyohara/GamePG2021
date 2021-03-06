@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "system/system.h"
-#include "Player.h"
 
 ///////////////////////////////////////////////////////////////////
 // ウィンドウプログラムのメイン関数。
@@ -17,8 +16,6 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	//ゲームオブジェクトマネージャーのインスタンスを作成する。
 	GameObjectManager::CreateInstance();
 	PhysicsWorld::CreateInstance();
-	
-	NewGO<Player>(0);
 
 	//////////////////////////////////////
 	// 初期化を行うコードを書くのはここまで！！！

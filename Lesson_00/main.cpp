@@ -21,6 +21,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	
 	//Hands On 2 プレイヤーのオブジェクトを作成。
 
+	g_camera3D->SetPosition(0, 50.0f, -200.0f);
+
 	//////////////////////////////////////
 	// 初期化を行うコードを書くのはここまで！！！
 	//////////////////////////////////////

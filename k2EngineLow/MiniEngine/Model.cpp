@@ -47,6 +47,8 @@ void Model::Init(const ModelInitData& initData)
 void Model::UpdateWorldMatrix(Vector3 pos, Quaternion rot, Vector3 scale)
 {
 	Matrix mBias;
+	Matrix mBias2;
+	//mBias2.MakeRotationY(Math::PI * 1.0f);
 	if (m_modelUpAxis == enModelUpAxisZ) {
 		//Z-up
 		mBias.MakeRotationX(Math::PI * -0.5f);
@@ -55,7 +57,7 @@ void Model::UpdateWorldMatrix(Vector3 pos, Quaternion rot, Vector3 scale)
 	mTrans.MakeTranslation(pos);
 	mRot.MakeRotationFromQuaternion(rot);
 	mScale.MakeScaling(scale);
-	m_world = mBias * mScale * mRot * mTrans;
+	m_world = mBias * mBias2 * mScale * mRot * mTrans;
 }
 
 void Model::ChangeAlbedoMap(const char* materialName, Texture& albedoMap)
