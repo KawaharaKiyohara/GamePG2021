@@ -4,6 +4,10 @@
 BackGround::BackGround()
 {
 	modelRender.Init("Assets/modelData/bg/bg.tkm");
+
+	Quaternion rot;
+	rot.SetRotationDegY(180.0f);
+	modelRender.SetRotation(rot);
 }
 
 BackGround::~BackGround()
