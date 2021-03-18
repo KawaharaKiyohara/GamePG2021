@@ -10,5 +10,6 @@ public:
 	//‚±‚±‚©‚çƒƒ“ƒo•Ï”
 	ModelRender modelRender;
 	Vector3 position;
+	Quaternion rot;
 };
 

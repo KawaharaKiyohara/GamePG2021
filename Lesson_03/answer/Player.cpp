@@ -14,8 +14,6 @@ Player::~Player()
 
 void Player::Update()
 {
-	Quaternion rot;
-
 	//Hands On 1 キャラクターを右に向かせてみよう。
 	rot.SetRotationDegY(90.0f);
 
@@ -79,10 +77,10 @@ void Player::Move()
 		NewGO<Player>(0);
 	}
 
-	/*if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
+	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
 	{								     //キーボードのJキー。
-		position.y += 5.0f;
-	}*/
+		position.y += 3.0f;
+	}
 
 	if (g_pad[0]->IsPress(enButtonUp))
 	{
@@ -94,7 +92,7 @@ void Player::Move()
 		position.z -= 10.0f;
 	}
 
-	//position.y -= 0.5f;
+	position.y -= 0.2f;
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);

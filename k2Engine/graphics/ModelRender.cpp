@@ -57,6 +57,9 @@ void ModelRender::InitModel(const char* filePath, EnModelUpAxis enModelUpAxis)
 
 void ModelRender::Update()
 {
+	//スケルトンを更新。
+	m_skeleton.Update(m_model.GetWorldMatrix());
+
 	//モデルの更新。
 	m_model.UpdateWorldMatrix(m_position, m_rotation, m_scale);
 

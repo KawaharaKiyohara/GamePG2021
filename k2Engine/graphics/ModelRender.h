@@ -49,6 +49,15 @@ public:
 	}
 
 	/// <summary>
+	/// モデルを取得。
+	/// </summary>
+	/// <returns>モデル</returns>
+	Model& GetModel()
+	{
+		return m_model;
+	}
+
+	/// <summary>
 	/// 座標、回転、拡大を全て更新。
 	/// </summary>
 	/// <param name="pos">座標。</param>
