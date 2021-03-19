@@ -3,8 +3,15 @@
 
 Player::Player()
 {
+	//アニメーションクリップをロードする。
+	animationClips[enAnimClip_Idle].Load("Assets/animData/idle.tka");
+	animationClips[enAnimClip_Idle].SetLoopFlag(true);
+	animationClips[enAnimClip_Walk].Load("Assets/animData/walk.tka");
+	animationClips[enAnimClip_Walk].SetLoopFlag(true);
+	animationClips[enAnimClip_Jump].Load("Assets/animData/jump.tka");
+	animationClips[enAnimClip_Jump].SetLoopFlag(false);
 	//モデルを初期化する。
-	modelRender.Init("Assets/modelData/unityChan.tkm");
+	modelRender.Init("Assets/modelData/unityChan.tkm",animationClips,enAnimClip_Num,enModelUpAxisY);
 }
 
 Player::~Player()
@@ -14,49 +21,55 @@ Player::~Player()
 
 void Player::Update()
 {
-	Quaternion rot;
-
-	//Hands On 1 キャラクターを右に向かせてみよう。
-	rot.SetRotationDegY(90.0f);
-
-	//Question 1 キャラクターを左に向かせてみよう。
-	rot.SetRotationDegY(-90.0f);
-
-	//Question 2 キャラクターを奥に向かせてみよう。
-	rot.SetRotationDegY(0.0f);
-
-	//Question 3 キャラクターを手前に向かせてみよう。
-	rot.SetRotationDegY(180.0f);
-
-	//Hands On 2 キャラクターを右に向かせよう。
-	if (g_pad[0]->IsPress(enButtonRight))
-	{
-		rot.SetRotationDegY(90.0f);
+	//Hands On 1 歩きアニメーションを再生してみよう。
+	if (playerState == 0) {
+		//ゲームパッドの上ボタンが押されていたら。
+		if (g_pad[0]->IsPress(enButtonUp))
+		{
+			//歩きアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Walk);
+		}
+		//ゲームパッドの下ボタンが押されたら。
+		else if (g_pad[0]->IsPress(enButtonDown))
+		{
+			//歩きアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Walk);
+		}
+		//実習課題 1 左右のボタンでも歩きアニメーションを再生できるようにしなさい。
+		//右ボタンが押されたら。
+		else if (g_pad[0]->IsPress(enButtonRight))
+		{
+			//歩きアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Walk);
+		}
+		//左ボタンが押されたら。
+		else if (g_pad[0]->IsPress(enButtonLeft))
+		{
+			//歩きアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Walk);
+		}
+		//何も入力されていなければ。
+		else 
+		{
+			//立ちアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Idle);
+		}
 	}
 
-	//Question 4 パッドの左ボタンが押されたら、キャラクターが左を向くようにしてみよう。
-	if (g_pad[0]->IsPress(enButtonLeft))
+	//Hands On 2 ジャンプアニメーションを再生してみよう。
+	//Aボタンが押されたら。
+	if (g_pad[0]->IsTrigger(enButtonA))
 	{
-		rot.SetRotationDegY(-90.0f);
+		//ジャンプアニメーションを再生する。
+		modelRender.PlayAnimation(enAnimClip_Jump);
+		playerState = 1;
 	}
-
-	//Question 5 パッドの上ボタンが押されたら、キャラクターが奥を向くようにしてみよう。
-	if (g_pad[0]->IsPress(enButtonUp))
-	{
-		rot.SetRotationDegY(0.0f);
-	}
-
-	//Question 6 パッドの下ボタンが押されたら、キャラクターが奥を向くようにしてみよう。
-	if (g_pad[0]->IsPress(enButtonDown))
-	{
-		rot.SetRotationDegY(180.0f);
-	}
-	
-	//回転を絵描きさんに教える。
-	modelRender.SetRotation(rot);
 
 	//キャラクターの移動。
 	Move();
+
+	//キャラクターの回転。
+	Rotation();
 
 	//モデルを更新する。
 	modelRender.Update();
@@ -66,12 +79,12 @@ void Player::Move()
 {
 	if (g_pad[0]->IsPress(enButtonRight))  //もしもゲームパッドの右ボタンが押されたら。
 	{                                      //キーボードの6キー。
-		position.x += 10.0f;
+		position.x += 5.0f;
 	}
 
 	if (g_pad[0]->IsPress(enButtonLeft))  //もしもゲームパッドの左ボタンが押されたら。
 	{                                     //キーボードの4キー。
-		position.x -= 10.0f;
+		position.x -= 5.0f;
 	}
 
 	if (g_pad[0]->IsPress(enButtonSelect)) //もしもゲームパッドのAボタンが押されたら。
@@ -79,25 +92,51 @@ void Player::Move()
 		NewGO<Player>(0);
 	}
 
-	/*if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
+	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
 	{								     //キーボードのJキー。
-		position.y += 5.0f;
-	}*/
+		position.y += 3.0f;
+	}
 
 	if (g_pad[0]->IsPress(enButtonUp))
 	{
-		position.z += 10.0f;
+		position.z += 5.0f;
 	}
 
 	if (g_pad[0]->IsPress(enButtonDown))
 	{
-		position.z -= 10.0f;
+		position.z -= 5.0f;
 	}
 
-	//position.y -= 0.5f;
+	position.y -= 0.2f;
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
+}
+
+void Player::Rotation()
+{
+	if (g_pad[0]->IsPress(enButtonRight))
+	{
+		rot.SetRotationDegY(90.0f);
+	}
+
+	if (g_pad[0]->IsPress(enButtonLeft))
+	{
+		rot.SetRotationDegY(-90.0f);
+	}
+
+	if (g_pad[0]->IsPress(enButtonUp))
+	{
+		rot.SetRotationDegY(0.0f);
+	}
+
+	if (g_pad[0]->IsPress(enButtonDown))
+	{
+		rot.SetRotationDegY(180.0f);
+	}
+
+	//回転を絵描きさんに教える。
+	modelRender.SetRotation(rot);
 }
 
 void Player::Render(RenderContext& renderContext)
