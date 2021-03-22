@@ -48,6 +48,14 @@ void Player::Update()
 			//歩きアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Walk);
 		}
+		else //Hands On 2 ジャンプアニメーションを再生してみよう。
+	//Aボタンが押されたら。
+			if (g_pad[0]->IsTrigger(enButtonA))
+			{
+				//ジャンプアニメーションを再生する。
+				modelRender.PlayAnimation(enAnimClip_Jump);
+				playerState = 1;
+			}
 		//何も入力されていなければ。
 		else 
 		{
@@ -55,15 +63,14 @@ void Player::Update()
 			modelRender.PlayAnimation(enAnimClip_Idle);
 		}
 	}
-
-	//Hands On 2 ジャンプアニメーションを再生してみよう。
-	//Aボタンが押されたら。
-	if (g_pad[0]->IsTrigger(enButtonA))
-	{
-		//ジャンプアニメーションを再生する。
-		modelRender.PlayAnimation(enAnimClip_Jump);
-		playerState = 1;
+	else if (playerState == 1) {
+		if (position.y <= 0.0f) {
+			//ジャンプ終わり
+			playerState = 0;
+		}
 	}
+
+	
 
 	//キャラクターの移動。
 	Move();
@@ -108,6 +115,10 @@ void Player::Move()
 	}
 
 	position.y -= 0.2f;
+	if (position.y <= 0.0f)
+	{
+		position.y = 0.0f;
+	}
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
