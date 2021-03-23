@@ -190,6 +190,9 @@
       <Filter>MiniEngine</Filter>
     </ClCompile>
     <ClCompile Include="k2EngineLowPreCompile.cpp" />
+    <ClCompile Include="ExEngine\physics\DebugWireframe.cpp">
+      <Filter>ExEngine\physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExEngine\gameObject\GameObjectManager.h">
@@ -382,5 +385,8 @@
       <Filter>MiniEngine</Filter>
     </ClInclude>
     <ClInclude Include="k2EngineLowPreCompile.h" />
+    <ClInclude Include="ExEngine\physics\DebugWireframe.h">
+      <Filter>ExEngine\physics</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

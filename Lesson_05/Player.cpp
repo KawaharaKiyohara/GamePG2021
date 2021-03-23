@@ -12,6 +12,8 @@ Player::Player()
 	animationClips[enAnimClip_Jump].SetLoopFlag(false);
 	//ƒ‚ƒfƒ‹‚ğ‰Šú‰»‚·‚éB
 	modelRender.Init("Assets/modelData/unityChan.tkm",animationClips,enAnimClip_Num,enModelUpAxisY);
+	modelRender.Update();
+	po.CreateFromModel(modelRender.GetModel(), modelRender.GetModel().GetWorldMatrix());
 }
 
 Player::~Player()
