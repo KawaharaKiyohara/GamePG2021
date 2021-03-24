@@ -21,6 +21,5 @@ public:
 	Quaternion rot;
 	AnimationClip animationClips[enAnimClip_Num];
 	int playerState;
-	PhysicsStaticObject po;
 };
 

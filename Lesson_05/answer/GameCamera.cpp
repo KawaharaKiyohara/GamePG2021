@@ -40,10 +40,19 @@ void GameCamera::Update()
 	g_camera3D->SetNear(1.0f);
 
 	//Hands On 5 ‰æŠp‚ð•ÏX‚·‚éB
-	timer -= 0.04f;
+	//ƒJƒƒ‰‚Ì‰æŠp‚ðŽ‚Á‚Ä‚­‚éB
 	float angle = g_camera3D->GetViewAngle();
-	//ŽOŠpŠÖ”‚ðŽg—p‚µ‚Ä‚¢‚Ü‚·‚ªA‹C‚É‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B
-	angle += sinf(timer) / 70.0;
+	//Xƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚çB
+	if (g_pad[0]->IsPress(enButtonX))
+	{
+		//‰æŠp‚ð‰ÁŽZ‚·‚éB
+		angle += 0.05f;
+	}
+	if (g_pad[0]->IsPress(enButtonY))
+	{
+		//‰æŠp‚ðŒ¸ŽZ‚·‚éB
+		angle -= 0.05f;
+	}
 	g_camera3D->SetViewAngle(angle);
 }
 

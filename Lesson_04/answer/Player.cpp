@@ -23,8 +23,16 @@ void Player::Update()
 {
 	//Hands On 1 歩きアニメーションを再生してみよう。
 	if (playerState == 0) {
+		//Hands On 2 ジャンプアニメーションを再生してみよう。
+		//Aボタンが押されたら。
+		if (g_pad[0]->IsTrigger(enButtonA))
+		{
+			//ジャンプアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Jump);
+			playerState = 1;
+		}
 		//ゲームパッドの上ボタンが押されていたら。
-		if (g_pad[0]->IsPress(enButtonUp))
+		else if (g_pad[0]->IsPress(enButtonUp))
 		{
 			//歩きアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Walk);
@@ -48,29 +56,23 @@ void Player::Update()
 			//歩きアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Walk);
 		}
-		else //Hands On 2 ジャンプアニメーションを再生してみよう。
-	//Aボタンが押されたら。
-			if (g_pad[0]->IsTrigger(enButtonA))
-			{
-				//ジャンプアニメーションを再生する。
-				modelRender.PlayAnimation(enAnimClip_Jump);
-				playerState = 1;
-			}
 		//何も入力されていなければ。
-		else 
+		else
 		{
 			//立ちアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Idle);
 		}
 	}
-	else if (playerState == 1) {
-		if (position.y <= 0.0f) {
+	else if (playerState == 1) 
+	{
+		if (position.y <= 0.0f) 
+		{
 			//ジャンプ終わり
 			playerState = 0;
 		}
 	}
 
-	
+
 
 	//キャラクターの移動。
 	Move();
@@ -94,14 +96,9 @@ void Player::Move()
 		position.x -= 5.0f;
 	}
 
-	if (g_pad[0]->IsPress(enButtonSelect)) //もしもゲームパッドのAボタンが押されたら。
-	{                                      //キーボードのスペースキー。
-		NewGO<Player>(0);
-	}
-
 	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
 	{								     //キーボードのJキー。
-		position.y += 3.0f;
+		position.y += 5.0f;
 	}
 
 	if (g_pad[0]->IsPress(enButtonUp))
@@ -114,7 +111,7 @@ void Player::Move()
 		position.z -= 5.0f;
 	}
 
-	position.y -= 0.2f;
+	position.y -= 0.5f;
 	if (position.y <= 0.0f)
 	{
 		position.y = 0.0f;

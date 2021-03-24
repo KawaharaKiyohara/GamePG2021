@@ -26,6 +26,9 @@ void Player::Update()
 	
 	//Hands On 4 重力を加えてみよう。
 
+	//Hands On 5 キャラクターのy座標を制限してみよう。
+
+
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
 

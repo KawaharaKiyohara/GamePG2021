@@ -15,23 +15,9 @@ Player::~Player()
 void Player::Update()
 {
 
-	//Hands On 1 キャラクターを右に向かせてみよう。
+	Rotation();
 
-	//Question 1 キャラクターを左に向かせてみよう。
-
-	//Question 2 キャラクターを奥に向かせてみよう。
-
-	//Question 3 キャラクターを手前に向かせてみよう。
-
-	//Hands On 2 キャラクターを右に向かせよう。
-
-	//Question 4 パッドの左ボタンが押されたら、キャラクターが左を向くようにしてみよう。
-
-	//Question 5 パッドの上ボタンが押されたら、キャラクターが奥を向くようにしてみよう。
-
-	//Question 6 パッドの下ボタンが押されたら、キャラクターが奥を向くようにしてみよう。
-	
-	//回転を絵描きさんに教える。
+	//Hands On 3 キャラクターを回転させ続けよう。
 
 	//キャラクターの移動。
 	Move();
@@ -52,14 +38,9 @@ void Player::Move()
 		position.x -= 10.0f;
 	}
 
-	if (g_pad[0]->IsPress(enButtonSelect)) //もしもゲームパッドのAボタンが押されたら。
-	{                                      //キーボードのスペースキー。
-		NewGO<Player>(0);
-	}
-
 	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
 	{								     //キーボードのJキー。
-		position.y += 3.0f;
+		position.y += 5.0f;
 	}
 
 	if (g_pad[0]->IsPress(enButtonUp))
@@ -72,10 +53,35 @@ void Player::Move()
 		position.z -= 10.0f;
 	}
 
-	position.y -= 0.2f;
+	position.y -= 0.5f;
+	if (position.y <= 0.0f)
+	{
+		position.y = 0.0f;
+	}
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
+}
+
+void Player::Rotation()
+{
+	//Hands On 1 キャラクターを右に向かせてみよう。
+
+	//Question 1 キャラクターを左に向かせてみよう。
+
+	//Question 2 キャラクターを奥に向かせてみよう。
+
+	//Question 3 キャラクターを手前に向かせてみよう。
+
+	//Hands On 2 キャラクターを右に向かせよう。
+
+	//Question 4 パッドの左ボタンが押されたら、キャラクターが左を向くようにしてみよう。
+
+	//Question 5 パッドの上ボタンが押されたら、キャラクターが奥を向くようにしてみよう。
+
+	//Question 6 パッドの下ボタンが押されたら、キャラクターが奥を向くようにしてみよう。
+
+	//回転を絵描きさんに教える。
 }
 
 void Player::Render(RenderContext& renderContext)

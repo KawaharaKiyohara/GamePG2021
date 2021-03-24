@@ -14,7 +14,7 @@ class PhysicsWorld
 	std::unique_ptr<btDiscreteDynamicsWorld>			 m_dynamicWorld;			//!<ƒ[ƒ‹ƒhB
 #ifdef _DEBUG
 	DebugWireframe m_debugWireFrame;
-	bool m_isDrawDebugWireFrame = true;
+	bool m_isDrawDebugWireFrame = false;
 #endif
 
 public:

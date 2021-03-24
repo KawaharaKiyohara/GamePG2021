@@ -9,6 +9,5 @@ public:
 
 	//プレイヤー。
 	Player* player;
-	float timer = 0;
 };
 

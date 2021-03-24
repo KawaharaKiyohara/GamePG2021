@@ -14,6 +14,59 @@ Player::~Player()
 
 void Player::Update()
 {
+
+	//Rotation();
+
+	//Hands On 3 キャラクターを回転させ続けよう。
+	rot.AddRotationY(0.05f);
+	modelRender.SetRotation(rot);
+
+	//キャラクターの移動。
+	Move();
+
+	//モデルを更新する。
+	modelRender.Update();
+}
+
+void Player::Move()
+{
+	if (g_pad[0]->IsPress(enButtonRight))  //もしもゲームパッドの右ボタンが押されたら。
+	{                                      //キーボードの6キー。
+		position.x += 10.0f;
+	}
+
+	if (g_pad[0]->IsPress(enButtonLeft))  //もしもゲームパッドの左ボタンが押されたら。
+	{                                     //キーボードの4キー。
+		position.x -= 10.0f;
+	}
+
+	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
+	{								     //キーボードのJキー。
+		position.y += 5.0f;
+	}
+
+	if (g_pad[0]->IsPress(enButtonUp))
+	{
+		position.z += 10.0f;
+	}
+
+	if (g_pad[0]->IsPress(enButtonDown))
+	{
+		position.z -= 10.0f;
+	}
+
+	position.y -= 0.5f;
+	if (position.y <= 0.0f)
+	{
+		position.y = 0.0f;
+	}
+
+	//座標を絵描きさんに教える。
+	modelRender.SetPosition(position);
+}
+
+void Player::Rotation()
+{
 	//Hands On 1 キャラクターを右に向かせてみよう。
 	rot.SetRotationDegY(90.0f);
 
@@ -49,53 +102,9 @@ void Player::Update()
 	{
 		rot.SetRotationDegY(180.0f);
 	}
-	
+
 	//回転を絵描きさんに教える。
 	modelRender.SetRotation(rot);
-
-	//キャラクターの移動。
-	Move();
-
-	//モデルを更新する。
-	modelRender.Update();
-}
-
-void Player::Move()
-{
-	if (g_pad[0]->IsPress(enButtonRight))  //もしもゲームパッドの右ボタンが押されたら。
-	{                                      //キーボードの6キー。
-		position.x += 10.0f;
-	}
-
-	if (g_pad[0]->IsPress(enButtonLeft))  //もしもゲームパッドの左ボタンが押されたら。
-	{                                     //キーボードの4キー。
-		position.x -= 10.0f;
-	}
-
-	if (g_pad[0]->IsPress(enButtonSelect)) //もしもゲームパッドのAボタンが押されたら。
-	{                                      //キーボードのスペースキー。
-		NewGO<Player>(0);
-	}
-
-	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
-	{								     //キーボードのJキー。
-		position.y += 3.0f;
-	}
-
-	if (g_pad[0]->IsPress(enButtonUp))
-	{
-		position.z += 10.0f;
-	}
-
-	if (g_pad[0]->IsPress(enButtonDown))
-	{
-		position.z -= 10.0f;
-	}
-
-	position.y -= 0.2f;
-
-	//座標を絵描きさんに教える。
-	modelRender.SetPosition(position);
 }
 
 void Player::Render(RenderContext& renderContext)

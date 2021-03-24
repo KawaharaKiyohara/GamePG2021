@@ -21,12 +21,12 @@ Player::~Player()
 
 void Player::Update()
 {
-
 	//Hands On 1 歩きアニメーションを再生してみよう。
+		//実習課題 1 左右のボタンでも歩きアニメーションを再生できるようにしなさい。
+		//Hands On 2 ジャンプアニメーションを再生してみよう。
+	
 
-	//実習課題 1 左右のボタンでも歩きアニメーションを再生できるようにしなさい。
 
-	//Hands On 2 ジャンプアニメーションを再生してみよう。
 
 	//キャラクターの移動。
 	Move();
@@ -50,14 +50,9 @@ void Player::Move()
 		position.x -= 5.0f;
 	}
 
-	if (g_pad[0]->IsPress(enButtonSelect)) //もしもゲームパッドのAボタンが押されたら。
-	{                                      //キーボードのスペースキー。
-		NewGO<Player>(0);
-	}
-
 	if (g_pad[0]->IsPress(enButtonA))    //もしもゲームパッドのAボタンが押されたら。
 	{								     //キーボードのJキー。
-		position.y += 3.0f;
+		position.y += 5.0f;
 	}
 
 	if (g_pad[0]->IsPress(enButtonUp))
@@ -70,7 +65,11 @@ void Player::Move()
 		position.z -= 5.0f;
 	}
 
-	position.y -= 0.2f;
+	position.y -= 0.5f;
+	if (position.y <= 0.0f)
+	{
+		position.y = 0.0f;
+	}
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
