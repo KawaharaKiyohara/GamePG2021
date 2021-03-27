@@ -15,7 +15,7 @@ Player::Player()
 	modelRender.Update();
 
 	//Hands On 4 CharacterControllerクラスのオブジェクトを初期化する。
-	
+	characterController.Init(25.0f, 75.0f, position);
 }
 
 Player::~Player()
@@ -41,18 +41,53 @@ void Player::Update()
 void Player::Move()
 {
 	//Hands On 6 キャラクターの移動速度を初期化しよう。
-	
+	moveSpeed.x = 0.0f;
+	//yはここでは、初期化しない。
+	moveSpeed.z = 0.0f;
 
 	//Hands On 8 キャラクターを左右に動かしてみよう。
-
+	if (g_pad[0]->IsPress(enButtonRight))
+	{
+		moveSpeed.x += 7.0f;
+	}
+	if (g_pad[0]->IsPress(enButtonLeft))
+	{
+		moveSpeed.x -= 7.0f;
+	}
 
 	//Hands On 9 キャラクターを前後に動かしてみよう。
-	
+	if (g_pad[0]->IsPress(enButtonUp))
+	{
+		moveSpeed.z += 7.0f;
+	}
+	if (g_pad[0]->IsPress(enButtonDown))
+	{
+		moveSpeed.z -= 7.0f;
+	}
 
 	//Hands On 10 キャラクターをジャンプさせて、重力を加えよう。
+	//地面に着いていたら。
+	if (characterController.IsOnGround() == true)
+	{
+		//y方向の速度を0にする。
+		moveSpeed.y = 0.0f;
+		//Aボタンが押されたら。
+		if (g_pad[0]->IsPress(enButtonA))
+		{
+			//y方向の移動速度を上げる。
+			moveSpeed.y = 20.0f;
+		}
+	}
+	//地面に付いていなかったら。
+	else 
+	{
+		//重力を発生させる。
+		moveSpeed.y -= 1.0f;
+	}
 
 
 	//Hands On 7 CharacterControllerを使って、キャラクターを移動させる。
+	position = characterController.Execute(moveSpeed,1.0f);
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
@@ -128,12 +163,15 @@ void Player::Animation()
 	else if (playerState == 1)
 	{
 		//Hands On 11 ステートを地面に着地したら変更するようにしてみよう。
-		if (position.y <= 0.0f)
+		/*if (position.y <= 0.0f)
 		{
 			//ジャンプ終わり
 			playerState = 0;
+		}*/
+		if (characterController.IsOnGround() == true)
+		{
+			playerState = 0;
 		}
-	
 	}
 }
 

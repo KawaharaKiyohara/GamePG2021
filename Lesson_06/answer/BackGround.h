@@ -9,6 +9,6 @@ public:
 	ModelRender modelRender;
 	//Hands On 1 静的物理オブジェクト(PhysicsStaticObject)。
 	//を保持させる。
-
+	PhysicsStaticObject physicsStaticObject;
 };
 
