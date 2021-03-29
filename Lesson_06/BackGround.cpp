@@ -10,7 +10,9 @@ BackGround::BackGround()
 	modelRender.SetRotation(rot);
 	modelRender.Update();
 	//Hands On 2 PhysicsStaticObject‚Ì‰Šú‰»B
-	
+	physicsStaticObject.CreateFromModel(modelRender.GetModel(), modelRender.GetModel().GetWorldMatrix());
+	//“–‚½‚è”»’è‚ð‰ÂŽ‹‰»‚·‚éB
+	PhysicsWorld::GetInstance()->EnableDrawDebugWireFrame();
 }
 
 BackGround::~BackGround()

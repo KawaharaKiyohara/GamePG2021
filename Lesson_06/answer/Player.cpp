@@ -46,40 +46,42 @@ void Player::Move()
 	moveSpeed.z = 0.0f;
 
 	//Hands On 8 キャラクターを左右に動かしてみよう。
-	if (g_pad[0]->IsPress(enButtonRight))
-	{
-		moveSpeed.x += 7.0f;
-	}
-	if (g_pad[0]->IsPress(enButtonLeft))
-	{
-		moveSpeed.x -= 7.0f;
-	}
-
-	//Hands On 9 キャラクターを前後に動かしてみよう。
-	if (g_pad[0]->IsPress(enButtonUp))
-	{
-		moveSpeed.z += 7.0f;
-	}
-	if (g_pad[0]->IsPress(enButtonDown))
-	{
-		moveSpeed.z -= 7.0f;
-	}
-
-	//Hands On 10 キャラクターをジャンプさせて、重力を加えよう。
-	//地面に着いていたら。
-	if (characterController.IsOnGround() == true)
-	{
-		//y方向の速度を0にする。
-		moveSpeed.y = 0.0f;
-		//Aボタンが押されたら。
-		if (g_pad[0]->IsPress(enButtonA))
+	if (playerState == 0) {
+		if (g_pad[0]->IsPress(enButtonRight))
 		{
-			//y方向の移動速度を上げる。
-			moveSpeed.y = 20.0f;
+			moveSpeed.x += 7.0f;
+		}
+		if (g_pad[0]->IsPress(enButtonLeft))
+		{
+			moveSpeed.x -= 7.0f;
+		}
+
+		//Hands On 9 キャラクターを前後に動かしてみよう。
+		if (g_pad[0]->IsPress(enButtonUp))
+		{
+			moveSpeed.z += 7.0f;
+		}
+		if (g_pad[0]->IsPress(enButtonDown))
+		{
+			moveSpeed.z -= 7.0f;
+		}
+
+		//Hands On 10 キャラクターをジャンプさせて、重力を加えよう。
+		//地面に着いていたら。
+		if (characterController.IsOnGround() == true)
+		{
+			//y方向の速度を0にする。
+			moveSpeed.y = 0.0f;
+			//Aボタンが押されたら。
+			if (g_pad[0]->IsPress(enButtonA))
+			{
+				//y方向の移動速度を上げる。
+				moveSpeed.y = 20.0f;
+			}
 		}
 	}
 	//地面に付いていなかったら。
-	else 
+	else if(playerState == 1)
 	{
 		//重力を発生させる。
 		moveSpeed.y -= 1.0f;

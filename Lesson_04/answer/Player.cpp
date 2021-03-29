@@ -21,18 +21,11 @@ Player::~Player()
 
 void Player::Update()
 {
+	//Hands On 3 ステートを使ってみよう。
 	//Hands On 1 歩きアニメーションを再生してみよう。
 	if (playerState == 0) {
-		//Hands On 2 ジャンプアニメーションを再生してみよう。
-		//Aボタンが押されたら。
-		if (g_pad[0]->IsTrigger(enButtonA))
-		{
-			//ジャンプアニメーションを再生する。
-			modelRender.PlayAnimation(enAnimClip_Jump);
-			playerState = 1;
-		}
 		//ゲームパッドの上ボタンが押されていたら。
-		else if (g_pad[0]->IsPress(enButtonUp))
+		if (g_pad[0]->IsPress(enButtonUp))
 		{
 			//歩きアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Walk);
@@ -43,7 +36,6 @@ void Player::Update()
 			//歩きアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Walk);
 		}
-		//実習課題 1 左右のボタンでも歩きアニメーションを再生できるようにしなさい。
 		//右ボタンが押されたら。
 		else if (g_pad[0]->IsPress(enButtonRight))
 		{
@@ -61,6 +53,15 @@ void Player::Update()
 		{
 			//立ちアニメーションを再生する。
 			modelRender.PlayAnimation(enAnimClip_Idle);
+		}
+
+		//Hands On 2 ジャンプアニメーションを再生してみよう。
+		//Aボタンが押されたら。
+		if (g_pad[0]->IsTrigger(enButtonA))
+		{
+			//ジャンプアニメーションを再生する。
+			modelRender.PlayAnimation(enAnimClip_Jump);
+			playerState = 1;
 		}
 	}
 	else if (playerState == 1) 
