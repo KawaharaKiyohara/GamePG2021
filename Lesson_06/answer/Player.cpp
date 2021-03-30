@@ -25,48 +25,30 @@ Player::~Player()
 
 void Player::Update()
 {
-	//キャラクターの移動。
-	Move();
-
-	//キャラクターの回転。
-	Rotation();
-
-	//キャラクターのアニメーション。
-	Animation();
-
-	//モデルを更新する。
-	modelRender.Update();
-}
-
-void Player::Move()
-{
 	//Hands On 6 キャラクターの移動速度を初期化しよう。
 	moveSpeed.x = 0.0f;
 	//yはここでは、初期化しない。
 	moveSpeed.z = 0.0f;
 
-	//Hands On 8 キャラクターを左右に動かしてみよう。
+	//Hands On 9 キャラクターを動かしてみよう。
 	if (playerState == 0) {
 		if (g_pad[0]->IsPress(enButtonRight))
 		{
-			moveSpeed.x += 7.0f;
+			moveSpeed.x = 7.0f;
 		}
 		if (g_pad[0]->IsPress(enButtonLeft))
 		{
-			moveSpeed.x -= 7.0f;
+			moveSpeed.x = -7.0f;
 		}
-
-		//Hands On 9 キャラクターを前後に動かしてみよう。
 		if (g_pad[0]->IsPress(enButtonUp))
 		{
-			moveSpeed.z += 7.0f;
+			moveSpeed.z = 7.0f;
 		}
 		if (g_pad[0]->IsPress(enButtonDown))
 		{
-			moveSpeed.z -= 7.0f;
+			moveSpeed.z = -7.0f;
 		}
-
-		//Hands On 10 キャラクターをジャンプさせて、重力を加えよう。
+		//Hands On 9 キャラクターをジャンプさせて、重力を加えよう。
 		//地面に着いていたら。
 		if (characterController.IsOnGround() == true)
 		{
@@ -80,49 +62,15 @@ void Player::Move()
 			}
 		}
 	}
-	//地面に付いていなかったら。
-	else if(playerState == 1)
-	{
-		//重力を発生させる。
-		moveSpeed.y -= 1.0f;
-	}
-
+	//重力は常に発生させる。
+	moveSpeed.y -= 1.0f;
 
 	//Hands On 7 CharacterControllerを使って、キャラクターを移動させる。
-	position = characterController.Execute(moveSpeed,1.0f);
+	position = characterController.Execute(moveSpeed, 1.0f);
 
 	//座標を絵描きさんに教える。
 	modelRender.SetPosition(position);
-}
 
-void Player::Rotation()
-{
-	if (g_pad[0]->IsPress(enButtonRight))
-	{
-		rot.SetRotationDegY(90.0f);
-	}
-
-	if (g_pad[0]->IsPress(enButtonLeft))
-	{
-		rot.SetRotationDegY(-90.0f);
-	}
-
-	if (g_pad[0]->IsPress(enButtonUp))
-	{
-		rot.SetRotationDegY(0.0f);
-	}
-
-	if (g_pad[0]->IsPress(enButtonDown))
-	{
-		rot.SetRotationDegY(180.0f);
-	}
-
-	//回転を絵描きさんに教える。
-	modelRender.SetRotation(rot);
-}
-
-void Player::Animation()
-{
 	if (playerState == 0) {
 		//Aボタンが押されたら。
 		if (g_pad[0]->IsTrigger(enButtonA))
@@ -164,7 +112,8 @@ void Player::Animation()
 	}
 	else if (playerState == 1)
 	{
-		//Hands On 11 ステートを地面に着地したら変更するようにしてみよう。
+		//Hands On 10 ステートを地面に着地したら変更するようにしてみよう。
+		//「/*」でコメントアウトする。
 		/*if (position.y <= 0.0f)
 		{
 			//ジャンプ終わり
@@ -175,6 +124,38 @@ void Player::Animation()
 			playerState = 0;
 		}
 	}
+
+	//キャラクターの回転。
+	Rotation();
+
+	//モデルを更新する。
+	modelRender.Update();
+}
+
+void Player::Rotation()
+{
+	if (g_pad[0]->IsPress(enButtonRight))
+	{
+		rot.SetRotationDegY(90.0f);
+	}
+
+	if (g_pad[0]->IsPress(enButtonLeft))
+	{
+		rot.SetRotationDegY(-90.0f);
+	}
+
+	if (g_pad[0]->IsPress(enButtonUp))
+	{
+		rot.SetRotationDegY(0.0f);
+	}
+
+	if (g_pad[0]->IsPress(enButtonDown))
+	{
+		rot.SetRotationDegY(180.0f);
+	}
+
+	//回転を絵描きさんに教える。
+	modelRender.SetRotation(rot);
 }
 
 void Player::Render(RenderContext& renderContext)

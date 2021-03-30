@@ -21,8 +21,8 @@ public:
 	int playerState;
 	//Hands On 3 CharacterControllerクラスのオブジェクトを。
 	//Playerクラスに保持させる。
-	CharacterController characterController;
+
 	//Hands On 5 移動速度を追加する。
-	Vector3 moveSpeed;
+
 };
 

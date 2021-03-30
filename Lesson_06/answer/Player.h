@@ -6,9 +6,7 @@ public:
 	~Player();
 	void Update();
 	void Render(RenderContext& renderContext);
-	void Move();
 	void Rotation();
-	void Animation();
 	//‚±‚±‚©‚çƒƒ“ƒo•Ï”
 	enum EnAnimationClip {
 		enAnimClip_Idle,
