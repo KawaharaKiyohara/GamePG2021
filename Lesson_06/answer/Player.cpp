@@ -55,7 +55,7 @@ void Player::Update()
 			//y方向の速度を0にする。
 			moveSpeed.y = 0.0f;
 			//Aボタンが押されたら。
-			if (g_pad[0]->IsPress(enButtonA))
+			if (g_pad[0]->IsTrigger(enButtonA))
 			{
 				//y方向の移動速度を上げる。
 				moveSpeed.y = 20.0f;
