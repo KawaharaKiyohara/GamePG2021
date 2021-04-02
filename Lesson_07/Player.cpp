@@ -16,6 +16,8 @@ Player::Player()
 
 	//Hands On 4 CharacterControllerクラスのオブジェクトを初期化する。
 	characterController.Init(25.0f, 75.0f, position);
+
+	SetName("Player");
 }
 
 Player::~Player()
@@ -48,19 +50,19 @@ void Player::Move()
 	if (playerState == 0) {
 		if (g_pad[0]->IsPress(enButtonRight))
 		{
-			moveSpeed.x = 5.0f;
+			moveSpeed.x = 4.0f;
 		}
 		if (g_pad[0]->IsPress(enButtonLeft))
 		{
-			moveSpeed.x = -5.0f;
+			moveSpeed.x = -4.0f;
 		}
 		if (g_pad[0]->IsPress(enButtonUp))
 		{
-			moveSpeed.z = 5.0f;
+			moveSpeed.z = 4.0f;
 		}
 		if (g_pad[0]->IsPress(enButtonDown))
 		{
-			moveSpeed.z = -5.0f;
+			moveSpeed.z = -4.0f;
 		}
 		//地面に着いていたら。
 		if (characterController.IsOnGround() == true)
