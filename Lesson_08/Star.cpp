@@ -11,10 +11,9 @@
 Star::Star()
 {
 	//TODO モデルを差し替える。
-	//modelRender.Init("Assets/modelData/star.tkm");
+	modelRender.Init("Assets/modelData/star.tkm");
 	//モデルを読み込む。
-	modelRender.Init("Assets/modelData/unityChan.tkm");
-	//プレイヤーのインスタンスを引っ張ってくる。
+	//プレイヤーのオブジェクトを引っ張ってくる。
 	player = FindGO<Player>("Player");
 
 	//Hands On 7 効果音のwaveファイルを読み込む。
@@ -77,7 +76,7 @@ void Star::Update()
 		//効果音はループさせないので、falseにする。
 		se->Play(false);
 		//音量を上げる。
-		se->SetVolume(2.5f);
+		se->SetVolume(3.5f);
 
 		//自身(☆)を削除する。
 		DeleteGO(this);

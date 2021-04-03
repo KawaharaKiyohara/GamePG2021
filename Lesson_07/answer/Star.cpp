@@ -5,10 +5,9 @@
 Star::Star()
 {
 	//TODO モデルを差し替える。
-	//modelRender.Init("Assets/modelData/star.tkm");
+	modelRender.Init("Assets/modelData/star.tkm");
 	//モデルを読み込む。
-	modelRender.Init("Assets/modelData/unityChan.tkm");
-	//プレイヤーのインスタンスを引っ張ってくる。
+	//プレイヤーのオブジェクトを引っ張ってくる。
 	player = FindGO<Player>("Player");
 }
 

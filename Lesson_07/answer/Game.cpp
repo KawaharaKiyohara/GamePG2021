@@ -4,6 +4,7 @@
 #include "BackGround.h"
 #include "GameCamera.h"
 //Hands On 1 Starクラスの機能を使いたいので、ヘッダーファイルをインクルードする。
+#include "Star.h"
 
 Game::Game()
 {
@@ -13,7 +14,7 @@ Game::Game()
 	gameCamera->player = player;
 
 	//Hands On 2 Starクラスのオブジェクトを作成。
-
+	Star* star = NewGO<Star>(0);
 }
 
 Game::~Game()
