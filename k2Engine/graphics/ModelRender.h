@@ -118,7 +118,7 @@ private:
 		int numAnimationClips, 
 		EnModelUpAxis enModelUpAxis);
 private:
-	AnimationClip* m_animationClips = nullptr;						//アニメーションクリップ。
+	AnimationClip*				m_animationClips = nullptr;			//アニメーションクリップ。
 	int							m_numAnimationClips = 0;			//アニメーションクリップの数。
 	Vector3 					m_position = Vector3::Zero;			//座標。
 	Quaternion	 				m_rotation = Quaternion::Identity;	//回転。

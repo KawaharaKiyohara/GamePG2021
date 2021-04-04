@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\ModelRender.cpp" />
+    <ClCompile Include="graphics\SpriteRender.cpp" />
     <ClCompile Include="k2EnginePreCompile.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\ModelRender.h" />
+    <ClInclude Include="graphics\SpriteRender.h" />
     <ClInclude Include="k2EnginePreCompile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -87,7 +89,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\exlib\$(Platform)\$(Configuration)\</OutDir>
     <IncludePath>$(ProjectDIr);$(ProjectDir)../k2EngineLow/;$(ProjectDir)../k2EngineLow/MiniEngine/;$(ProjectDir)../k2EngineLow/ExEngine/;$(ProjectDir)../k2EngineLow/ExEngine/bulletPhysics/src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\..\exlib\$(Platform)\$(Configuration)\;$(ProjectDir)..\k2EngineLow\$(Platform)\$(Configuration)\;$(ProjectDir)..\k2EngineLow\MiniEngine\DirectXTK\Bin\Desktop_2019_Win10\$(Platform)\$(Configuration)\</LibraryPath>
+    <LibraryPath>$(ProjectDir)\..\exlib\$(Platform)\$(Configuration)\;$(ProjectDir)..\k2EngineLow\$(Platform)\$(Configuration)\;$(ProjectDir)..\k2EngineLow\MiniEngine\;$(ProjectDir)..\k2EngineLow\MiniEngine\DirectXTK\Bin\Desktop_2019_Win10\$(Platform)\$(Configuration)\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -126,7 +128,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>DirectXTK12.lib;BulletCollision_$(Configuration).lib;BulletDynamics_$(Configuration).lib;LinearMath_$(Configuration).lib;k2EngineLow.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>k2EngineLow.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -165,7 +167,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>DirectXTK12.lib;BulletCollision_$(Configuration).lib;BulletDynamics_$(Configuration).lib;LinearMath_$(Configuration).lib;k2EngineLow.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>k2EngineLow.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
