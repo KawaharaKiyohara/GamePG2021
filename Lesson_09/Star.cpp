@@ -2,8 +2,9 @@
 #include "Star.h"
 #include "Player.h"
 
-//Hands On 6 SoundEngineとWaveFileBankとSoundSourceの機能を使いたいので。
-//ヘッダーファイルをインクルードする。
+#include "sound/SoundEngine.h"
+#include "sound/WaveFileBank.h"
+#include "sound/SoundSource.h"
 
 Star::Star()
 {
@@ -13,9 +14,7 @@ Star::Star()
 	//プレイヤーのオブジェクトを引っ張ってくる。
 	player = FindGO<Player>("Player");
 
-	//Hands On 7 効果音のwaveファイルを読み込む。
-	//効果音の保存する番号は1にする//登録する番号はBGMのファイルと被らないように1にする。
-	
+	SoundEngine::GetInstance().GetWaveFileBank().Resist(1, "Assets/sound/sample.wav");
 }
 
 Star::~Star()
@@ -66,8 +65,13 @@ void Star::Update()
 	//プレイヤーと☆の距離が70.0fより小さかったら。
 	if (diff.Length() <= 70.0f)
 	{
-		//Hands On 8 効果音を再生しよう。
-	
+
+		SoundSource* se = NewGO<SoundSource>(0);
+		se->Init(1);
+		//効果音はループさせないので、falseにする。
+		se->Play(false);
+		//音量を上げる。
+		se->SetVolume(3.5f);
 
 		//自身(☆)を削除する。
 		DeleteGO(this);

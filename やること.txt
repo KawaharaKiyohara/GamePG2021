@@ -1,0 +1,7 @@
+FontRenderを作る。
+　→ModelRenderと同じようなAPIにする。
+
+今日やること
+教材の画像をgitにあげる。
+k2SLEditorの不具合をなおす。
+
