@@ -5,10 +5,9 @@
 #include "GameCamera.h"
 #include "Star.h"
 
-//Hands On 3 SoundEngineとWaveFileBankの機能を使いたいので。
+//Hands On 3 SoundEngineの機能を使いたいので。
 //ヘッダーファイルをインクルードする。
 #include "sound/SoundEngine.h"
-#include "sound/WaveFileBank.h"
 
 Game::Game()
 {
@@ -19,9 +18,9 @@ Game::Game()
 
 	Star* star = NewGO<Star>(0);
 
-	//Hands On 4 WaveFileBankを使って、waveファイル(.wav)を読み込む。
+	//Hands On 4 SoundEngineを使って、waveファイル(.wav)を読み込む。
 	//0は読み込んだwavファイルのされる番号。
-	SoundEngine::GetInstance().GetWaveFileBank().Resist(0, "Assets/sound/shining_star.wav");
+	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/shining_star.wav");
 
 	//Hands On 5 BGMを再生してみよう。
 	//SoundSouceのオブジェクトを作成する。

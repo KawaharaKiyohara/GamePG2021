@@ -2,8 +2,9 @@
 #include "Star.h"
 #include "Player.h"
 
-//Hands On 6 SoundEngineとWaveFileBankとSoundSourceの機能を使いたいので。
+//Hands On 6 SoundEngineとSoundSourceの機能を使いたいので。
 //ヘッダーファイルをインクルードする。
+
 
 Star::Star()
 {
@@ -14,7 +15,6 @@ Star::Star()
 	player = FindGO<Player>("Player");
 
 	//Hands On 7 効果音のwaveファイルを読み込む。
-	//効果音の保存する番号は1にする//登録する番号はBGMのファイルと被らないように1にする。
 	
 }
 

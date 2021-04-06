@@ -5,7 +5,7 @@
 #include "GameCamera.h"
 #include "Star.h"
 
-//Hands On 3 SoundEngineとWaveFileBankの機能を使いたいので。
+//Hands On 3 SoundEngineの機能を使いたいので。
 //ヘッダーファイルをインクルードする。
 
 
@@ -18,11 +18,8 @@ Game::Game()
 
 	Star* star = NewGO<Star>(0);
 
-	//Hands On 4 WaveFileBankを使って、waveファイル(.wav)を読み込む。
+	//Hands On 4 SoundEngineを使って、waveファイル(.wav)を読み込む。
 	
-
-	//Hands On 5 BGMを再生してみよう。
-
 }
 
 Game::~Game()

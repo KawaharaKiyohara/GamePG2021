@@ -2,10 +2,9 @@
 #include "Star.h"
 #include "Player.h"
 
-//Hands On 6 SoundEngineとWaveFileBankとSoundSourceの機能を使いたいので。
+//Hands On 6 SoundEngineとSoundSourceの機能を使いたいので。
 //ヘッダーファイルをインクルードする。
 #include "sound/SoundEngine.h"
-#include "sound/WaveFileBank.h"
 #include "sound/SoundSource.h"
 
 Star::Star()
@@ -18,7 +17,7 @@ Star::Star()
 
 	//Hands On 7 効果音のwaveファイルを読み込む。
 	//効果音の保存する番号は1にする//登録する番号はBGMのファイルと被らないように1にする。
-	SoundEngine::GetInstance().GetWaveFileBank().Resist(1, "Assets/sound/sample.wav");
+	g_soundEngine->ResistWaveFileBank(1, "Assets/sound/sample.wav");
 }
 
 Star::~Star()

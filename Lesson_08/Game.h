@@ -13,6 +13,6 @@ public:
 
 	Player* player;
 	//Hands On 2 SoundSource‚ğ’Ç‰Á‚µ‚æ‚¤B
-
+	
 };
 
