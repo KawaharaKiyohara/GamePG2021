@@ -19,7 +19,7 @@ Star::~Star()
 void Star::Update()
 {
 	//‰ñ“]‚ğ‰ÁZ‚·‚éB
-	rot.AddRotationY(0.01f);
+	rot.AddRotationDegY(2.0f);
 	//ŠG•`‚«‚³‚ñ‚É‰ñ“]‚ğ‹³‚¦‚éB
 	modelRender.SetRotation(rot);
 

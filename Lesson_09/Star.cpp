@@ -3,7 +3,6 @@
 #include "Player.h"
 
 #include "sound/SoundEngine.h"
-#include "sound/WaveFileBank.h"
 #include "sound/SoundSource.h"
 
 Star::Star()
@@ -14,7 +13,7 @@ Star::Star()
 	//プレイヤーのオブジェクトを引っ張ってくる。
 	player = FindGO<Player>("Player");
 
-	SoundEngine::GetInstance().GetWaveFileBank().Resist(1, "Assets/sound/sample.wav");
+	g_soundEngine->ResistWaveFileBank(1, "Assets/sound/sample.wav");
 }
 
 Star::~Star()

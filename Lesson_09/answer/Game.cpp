@@ -7,7 +7,6 @@
 
 
 #include "sound/SoundEngine.h"
-#include "sound/WaveFileBank.h"
 
 Game::Game()
 {
@@ -18,7 +17,7 @@ Game::Game()
 
 	Star* star = NewGO<Star>(0);
 	
-	SoundEngine::GetInstance().GetWaveFileBank().Resist(0, "Assets/sound/shining_star.wav");
+	g_soundEngine->ResistWaveFileBank(0, "Assets/sound/shining_star.wav");
 
 	bgm = NewGO<SoundSource>(0);
 	//WaveFileBankから登録されたwaveファイルのデータを持ってくる。

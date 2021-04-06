@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "system/system.h"
+#include "sound/SoundEngine.h"
 #include "Game.h"
 
 ///////////////////////////////////////////////////////////////////
@@ -17,6 +18,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	//ゲームオブジェクトマネージャーのインスタンスを作成する。
 	GameObjectManager::CreateInstance();
 	PhysicsWorld::CreateInstance();
+	g_soundEngine = new SoundEngine();
 
 	NewGO<Game>(0);
 
@@ -46,6 +48,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//////////////////////////////////////
 		//絵を描くコードを書くのはここまで！！！
 		//////////////////////////////////////
+		g_soundEngine->Update();
 		g_engine->EndFrame();
 	}
 	//ゲームオブジェクトマネージャーを削除。

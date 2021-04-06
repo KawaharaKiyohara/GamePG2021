@@ -18,7 +18,7 @@ void Player::Update()
 	//Rotation();
 
 	//Hands On 3 キャラクターを回転させ続けよう。
-	rot.AddRotationY(0.05f);
+	rot.AddRotationDegY(2.0f);
 	modelRender.SetRotation(rot);
 
 	//キャラクターの移動。
