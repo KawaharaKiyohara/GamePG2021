@@ -1,26 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="graphics">
+      <UniqueIdentifier>{be505d70-91d3-424b-a445-5685d22f485c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="graphics\ModelRender.cpp">
+      <Filter>graphics</Filter>
+    </ClCompile>
     <ClCompile Include="k2EnginePreCompile.cpp" />
     <ClCompile Include="graphics\SpriteRender.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
-    <ClCompile Include="graphics\ModelRender.cpp">
+    <ClCompile Include="graphics\FontRender.cpp">
       <Filter>graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="graphics\ModelRender.h">
+      <Filter>graphics</Filter>
+    </ClInclude>
     <ClInclude Include="k2EnginePreCompile.h" />
     <ClInclude Include="graphics\SpriteRender.h">
       <Filter>graphics</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\ModelRender.h">
+    <ClInclude Include="graphics\FontRender.h">
       <Filter>graphics</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="graphics">
-      <UniqueIdentifier>{7632c4e4-35ec-4c66-bf25-75b5ea144ec7}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

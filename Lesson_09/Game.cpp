@@ -27,10 +27,10 @@ Game::Game()
 	bgm->Play(true);
 
 	//Hands On 3 画像を読み込む。
-	spriteRender.Init("Assets/sprite/title.dds", 64.0f, 64.0f);
-	//大きさを設定する。
-	spriteRender.SetScale(scale);
-	spriteRender.SetPosition(position);
+	
+	
+	//Hands On 9 表示する文字を設定しよう。
+	
 }
 
 Game::~Game()
@@ -41,50 +41,20 @@ Game::~Game()
 
 void Game::Update()
 {
-	//Hands On 5 画像を横に動かしてみよう。
-	//Xボタンが押されたら。
-	if (g_pad[0]->IsPress(enButtonX))
-	{
-		//画像を左に移動させる。
-		position.x += 1.0f;
-	}
-	//Yボタンが押されたら。
-	if (g_pad[0]->IsPress(enButtonY))
-	{
-		//画像を右に移動させる。
-		position.x -= 1.0f;
-	}
+	//Hands On 6 画像を横に動かしてみよう。
+	
 
-	//Hands On 6 画像を縦に動かしてみよう。
-	//Aボタンが押されたら。
-	if (g_pad[0]->IsPress(enButtonA))
-	{
-		//画像を上に移動させる。
-		position.y += 1.0f;
-	}
-	//Bボタンが押されたら。
-	if (g_pad[0]->IsPress(enButtonB))
-	{
-		//画像を下に移動させる。
-		position.y -= 1.0f;
-	}
+	//Hands On 7 画像を縦に動かしてみよう。
+	
+
+	//実習課題1 画像を左上に表示してみよう。
+	
+
 	//絵描きさんに座標を教える。
-	spriteRender.SetPosition(position);
+
 
 	//Hands On 4 画像の更新処理。
-	spriteRender.Update();
+	
 }
 
 //Hands On 5 Render関数を追加する。
-void Game::Render(RenderContext& rc)
-{
-
-	spriteRender.Draw(rc);
-
-	//TODO FontRenderを作って、それを使うようにする。
-	Font font;
-	font.Begin(rc);
-	//引数は左から、表示したい文字、座標、色、回転、大きさ、ピボット。
-	font.Draw(L"Hellow World!", { -300, 300 }, g_vec4White, 0.0f, 1.0f, { 0.0f, 0.0f });
-	font.End(rc);
-}
