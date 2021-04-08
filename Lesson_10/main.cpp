@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "system/system.h"
-//Hands On 1 プレイヤークラスの機能を使いたいので、ヘッダーファイルを
-//インクルードする。
+#include "Player.h"
+#include "Title.h"
+#include "sound/SoundEngine.h"
 
 ///////////////////////////////////////////////////////////////////
 // ウィンドウプログラムのメイン関数。
@@ -18,10 +19,9 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 	//ゲームオブジェクトマネージャーのインスタンスを作成する。
 	GameObjectManager::CreateInstance();
 	PhysicsWorld::CreateInstance();
+	g_soundEngine = new SoundEngine();
 	
-	//Hands On 2 プレイヤーのオブジェクトを作成。
-
-	g_camera3D->SetPosition(0, 50.0f, -200.0f);
+	NewGO<Title>(0,"title");
 
 	//////////////////////////////////////
 	// 初期化を行うコードを書くのはここまで！！！
@@ -42,9 +42,12 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPWSTR lpCmdLi
 		//sprite[1].Update(pos[1], Quaternion::Identity, Vector3::One);
 		GameObjectManager::GetInstance()->ExecuteUpdate();
 		GameObjectManager::GetInstance()->ExecuteRender(renderContext);
+		PhysicsWorld::GetInstance()->DebubDrawWorld(renderContext);
+	
 		//////////////////////////////////////
 		//絵を描くコードを書くのはここまで！！！
 		//////////////////////////////////////
+		g_soundEngine->Update();
 		g_engine->EndFrame();
 	}
 	//ゲームオブジェクトマネージャーを削除。
