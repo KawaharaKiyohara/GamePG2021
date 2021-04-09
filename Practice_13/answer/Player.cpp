@@ -28,6 +28,8 @@ void Player::Update()
 	//移動処理。
 	Move();
 
+	//回転処理。
+	Rotation();
 
 	//絵描きさんの更新処理。
 	modelRender.Update();
@@ -82,6 +84,18 @@ void Player::Move()
 
 	//絵描きさんに座標を教える。
 	modelRender.SetPosition(position);
+}
+
+void Player::Rotation()
+{
+	//xかzの移動速度があったら(スティックの入力があったら)。
+	if (fabsf(moveSpeed.x) >= 0.001f || fabsf(moveSpeed.z) >= 0.001f)
+	{
+		//キャラクターの方向を変える。
+		rotation.SetRotationYFromDirectionXZ(moveSpeed);
+		//絵描きさんに回転を教える。
+		modelRender.SetRotation(rotation);
+	}
 }
 
 //描画処理。
