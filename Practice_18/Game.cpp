@@ -5,7 +5,6 @@
 #include "BackGround.h"
 #include "Star.h"
 #include "sound/SoundEngine.h"
-#include "GameClear.h"
 
 Game::Game()
 {
@@ -55,12 +54,5 @@ Game::~Game()
 //更新処理。
 void Game::Update()
 {
-	//プレイヤーの☆カウントが5(☆が全部削除された)になったら。
-	if (player->starCount == 5)
-	{
-		//ゲームクリアのオブジェクトを作る。
-		NewGO<GameClear>(0, "gamecleear");
-		//自身を削除する。
-		DeleteGO(this);
-	}
+	
 }

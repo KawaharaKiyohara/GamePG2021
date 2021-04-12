@@ -153,7 +153,6 @@
     <ClCompile Include="BackGround.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameCamera.cpp" />
-    <ClCompile Include="GameClear.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Star.cpp" />
@@ -168,7 +167,6 @@
     <ClInclude Include="BackGround.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameCamera.h" />
-    <ClInclude Include="GameClear.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Star.h" />
     <ClInclude Include="stdafx.h" />

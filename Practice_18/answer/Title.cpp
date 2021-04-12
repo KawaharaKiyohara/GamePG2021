@@ -17,7 +17,8 @@ Title::Title()
 
 Title::~Title()
 {
-	
+	//タイトルのBGMを削除する。
+	DeleteGO(titleBGM);
 }
 
 void Title::Update()
