@@ -40,14 +40,14 @@ void Star::Update()
 
 void Star::Move()
 {
-	//moveCountが0の時。
-	if (moveCount == 0)
+	//moveStateが0の時。
+	if (moveState == 0)
 	{
 		//上に移動する。
 		position.y += 1.0f;
 	}
-	//moveCountが1の時。
-	else if (moveCount == 1)
+	//moveStateが1の時。
+	else if (moveState == 1)
 	{
 		//下に移動する。
 		position.y -= 1.0f;
@@ -56,14 +56,14 @@ void Star::Move()
 	//y座標が初期座標y+100.0fを超えたら。
 	if (position.y >= firstPosition.y + 100.0f)
 	{
-		//moveCountを1にする(下に移動するようにする)。
-		moveCount = 1;
+		//moveStateを1にする(下に移動するようにする)。
+		moveState= 1;
 	}
 	//y座標が初期座標-100.0fより下になったら。
 	else if (position.y <= firstPosition.y - 100.0f)
 	{
-		//moveCountを0にする(上に移動するようにする)。
-		moveCount = 0;
+		//moveStateを0にする(上に移動するようにする)。
+		moveState = 0;
 	}
 
 	//絵描きさんに座標を教える。

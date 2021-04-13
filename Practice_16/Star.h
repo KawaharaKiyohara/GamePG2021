@@ -16,7 +16,7 @@ public:
 	//メンバ変数。
 	ModelRender modelRender;	//モデルレンダ―。
 	Vector3 position;		//座標。
-	int moveCount;		//上に移動か下に移動か。
+	int moveState;		//上に移動か下に移動か。
 	Vector3 firstPosition;		//最初の座標。
 };
 

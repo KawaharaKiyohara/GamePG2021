@@ -1,10 +1,6 @@
 #include "stdafx.h"
 #include "Star.h"
 #include "Player.h"
-#include "sound/SoundEngine.h"
-#include "sound/SoundSource.h"
-
-
 
 Star::Star()
 {
@@ -12,9 +8,6 @@ Star::Star()
 	modelRender.Init("Assets/modelData/star.tkm");
 
 	player = FindGO<Player>("player");
-
-	//☆を削除する時の音を読み込む。
-	g_soundEngine->ResistWaveFileBank(2, "Assets/sound/get.wav");
 }
 
 Star::~Star()
@@ -38,12 +31,6 @@ void Star::Update()
 	//ベクトルの長さが120.0fより小さかったら。
 	if (diff.Length() <= 120.0f)
 	{
-		//効果音を再生する。
-		SoundSource* se = NewGO<SoundSource>(0);
-		se->Init(2);
-		se->SetVolume(3.5f);
-		se->Play(false);
-
 		player->starCount += 1;
 
 		//自身を削除する。
@@ -53,14 +40,14 @@ void Star::Update()
 
 void Star::Move()
 {
-	//moveCountが0の時。
-	if (moveCount == 0)
+	//moveStateが0の時。
+	if (moveState == 0)
 	{
 		//上に移動する。
 		position.y += 1.0f;
 	}
-	//moveCountが1の時。
-	else if (moveCount == 1)
+	//moveStateが1の時。
+	else if (moveState == 1)
 	{
 		//下に移動する。
 		position.y -= 1.0f;
@@ -69,14 +56,14 @@ void Star::Move()
 	//y座標が初期座標y+100.0fを超えたら。
 	if (position.y >= firstPosition.y + 100.0f)
 	{
-		//moveCountを1にする(下に移動するようにする)。
-		moveCount = 1;
+		//moveStateを1にする(下に移動するようにする)。
+		moveState= 1;
 	}
 	//y座標が初期座標-100.0fより下になったら。
 	else if (position.y <= firstPosition.y - 100.0f)
 	{
-		//moveCountを0にする(上に移動するようにする)。
-		moveCount = 0;
+		//moveStateを0にする(上に移動するようにする)。
+		moveState = 0;
 	}
 
 	//絵描きさんに座標を教える。
